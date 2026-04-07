@@ -1,4 +1,4 @@
-# Velvet Receipts
+# Velvet Receipts v1.0.0
 
 Provides receipt creation and logging for the Velvet ecosystem.
 
