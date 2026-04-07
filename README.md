@@ -1,6 +1,7 @@
 # Velvet Receipts
 
 Provides receipt creation and logging for the Velvet ecosystem.
+
 Used by enforcement systems such as velvet-event-protocol.
 
 Receipts are not logs.
