@@ -32,6 +32,17 @@ Each receipt answers four questions:
 
 ---
 
+Receipt Chain Contract
+
+Velvet Receipts preserves evidence of boot identity, authorization decisions, body registry changes, binding changes, degraded states, executor outcomes, and continuity across restarts.
+
+Receipts record what occurred. They do not authorize actions by themselves.
+
+See:
+
+- "Receipt Chain Contract" (docs/receipt_chain_contract.md)
+
+---
 ## What a Receipt Contains
 
 | Field | Description |
