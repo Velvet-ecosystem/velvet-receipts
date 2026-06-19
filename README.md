@@ -40,7 +40,8 @@ Receipts record what occurred. They do not authorize actions by themselves.
 
 See:
 
-- "Receipt Chain Contract" (docs/receipt_chain_contract.md)
+- "Receipt Chain Contract" 
+(docs/receipt_chain_contract.md)
 
 ---
 ## What a Receipt Contains
