@@ -6,6 +6,7 @@ from __future__ import annotations
 from typing import Any, Mapping
 
 from receipt import Receipt
+from ghost_can_receipts import GHOST_CAN_OBSERVATION_EVENT, ghost_can_receipt_from_envelope
 
 COURT_EVENTS = {
     "COURT_AUTHORIZED",
@@ -25,7 +26,9 @@ EXECUTION_EVENTS = {
     "EXECUTION_DENIED",
 }
 
-RUNTIME_RECEIPT_EVENTS = COURT_EVENTS | SAFETY_EVENTS | EXECUTION_EVENTS
+GHOST_OBSERVATION_EVENTS = {GHOST_CAN_OBSERVATION_EVENT}
+
+RUNTIME_RECEIPT_EVENTS = COURT_EVENTS | SAFETY_EVENTS | EXECUTION_EVENTS | GHOST_OBSERVATION_EVENTS
 
 
 def runtime_receipt_from_envelope(envelope: Mapping[str, Any]) -> Receipt:
@@ -42,6 +45,9 @@ def runtime_receipt_from_envelope(envelope: Mapping[str, Any]) -> Receipt:
     event_type = _required_text(envelope, "event_type")
     if event_type not in RUNTIME_RECEIPT_EVENTS:
         raise ValueError(f"unsupported runtime receipt event_type: {event_type}")
+
+    if event_type == GHOST_CAN_OBSERVATION_EVENT:
+        return ghost_can_receipt_from_envelope(envelope)
 
     source = _required_text(envelope, "source")
     subject_id = _required_text(envelope, "subject_id")
