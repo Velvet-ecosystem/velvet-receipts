@@ -12,5 +12,12 @@ license = { text = "GPL-3.0-only" }
 dependencies = []
 
 [tool.setuptools]
-py-modules = ["receipt", "receipt_logger"]
+py-modules = [
+  "receipt",
+  "receipt_logger",
+  "runtime_receipts",
+  "ghost_can_receipts",
+  "memory_link",
+  "memory_retrieval_receipt",
+]
 packages = ["velvet_receipts"]
