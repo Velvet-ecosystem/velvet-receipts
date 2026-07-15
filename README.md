@@ -177,6 +177,37 @@ valid, errors = logger.verify_chain()
 
 ---
 
+## Public Ghost CAN Receipts
+
+Velvet Receipts can record the public ghost-system CAN observation used by the jarred-car demo.
+
+Supported event:
+
+```text
+vehicle.can.ghost_observation
+```
+
+The receipt constructor requires the evidence payload to remain synthetic and read-only:
+
+```json
+{
+  "route_id": "can-ghost",
+  "target": "vehicle-can-ghost",
+  "read_only": true,
+  "synthetic_fixture": true,
+  "physical_bus_opened": false,
+  "can_transmission_attempted": false,
+  "actuation_performed": false,
+  "authority_granted": false
+}
+```
+
+If any of those flags are missing or unsafe, receipt construction is rejected. This records a ghost observation only. It does not authorize CAN injection, open hardware buses, or perform actuation.
+
+See `docs/ghost_can_receipt_contract.md`.
+
+---
+
 ## License
 
 GPLv3 — aligned with Velvet core infrastructure.
