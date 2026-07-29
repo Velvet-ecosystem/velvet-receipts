@@ -9,6 +9,12 @@ from ghost_can_receipts import (
     GHOST_CAN_RECEIPT_SCHEMA,
     ghost_can_receipt_from_envelope,
 )
+from distributed_work_receipts import (
+    DISTRIBUTED_WORK_RECEIPT_EVENTS,
+    DISTRIBUTED_WORK_RECEIPT_SCHEMA,
+    DistributedWorkReceiptError,
+    distributed_work_receipt_from_envelope,
+)
 
 __all__ = [
     "GENESIS_HASH",
@@ -17,5 +23,9 @@ __all__ = [
     "GHOST_CAN_OBSERVATION_EVENT",
     "GHOST_CAN_RECEIPT_SCHEMA",
     "ghost_can_receipt_from_envelope",
+    "DISTRIBUTED_WORK_RECEIPT_EVENTS",
+    "DISTRIBUTED_WORK_RECEIPT_SCHEMA",
+    "DistributedWorkReceiptError",
+    "distributed_work_receipt_from_envelope",
     "runtime_receipt_from_envelope",
 ]
