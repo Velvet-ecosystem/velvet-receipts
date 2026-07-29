@@ -1,5 +1,5 @@
 # SPDX-License-Identifier: GPL-3.0-only
-"""Canonical Court, safety, and execution receipt construction."""
+"""Canonical Court, safety, execution, and distributed-work receipt construction."""
 
 from __future__ import annotations
 
@@ -7,6 +7,10 @@ from typing import Any, Mapping
 
 from receipt import Receipt
 from ghost_can_receipts import GHOST_CAN_OBSERVATION_EVENT, ghost_can_receipt_from_envelope
+from distributed_work_receipts import (
+    DISTRIBUTED_WORK_RECEIPT_EVENTS,
+    distributed_work_receipt_from_envelope,
+)
 
 COURT_EVENTS = {
     "COURT_AUTHORIZED",
@@ -28,7 +32,13 @@ EXECUTION_EVENTS = {
 
 GHOST_OBSERVATION_EVENTS = {GHOST_CAN_OBSERVATION_EVENT}
 
-RUNTIME_RECEIPT_EVENTS = COURT_EVENTS | SAFETY_EVENTS | EXECUTION_EVENTS | GHOST_OBSERVATION_EVENTS
+RUNTIME_RECEIPT_EVENTS = (
+    COURT_EVENTS
+    | SAFETY_EVENTS
+    | EXECUTION_EVENTS
+    | GHOST_OBSERVATION_EVENTS
+    | DISTRIBUTED_WORK_RECEIPT_EVENTS
+)
 
 
 def runtime_receipt_from_envelope(envelope: Mapping[str, Any]) -> Receipt:
@@ -36,7 +46,7 @@ def runtime_receipt_from_envelope(envelope: Mapping[str, Any]) -> Receipt:
 
     The envelope is evidence input from trusted Runtime wiring. This function
     validates and normalizes it into the stable Velvet Receipt model. It does
-    not authorize, execute, or publish anything.
+    not authorize, execute, publish, place, or lease anything.
     """
 
     if not isinstance(envelope, Mapping):
@@ -48,6 +58,8 @@ def runtime_receipt_from_envelope(envelope: Mapping[str, Any]) -> Receipt:
 
     if event_type == GHOST_CAN_OBSERVATION_EVENT:
         return ghost_can_receipt_from_envelope(envelope)
+    if event_type in DISTRIBUTED_WORK_RECEIPT_EVENTS:
+        return distributed_work_receipt_from_envelope(envelope)
 
     source = _required_text(envelope, "source")
     subject_id = _required_text(envelope, "subject_id")
