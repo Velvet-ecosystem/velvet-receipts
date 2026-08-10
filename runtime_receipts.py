@@ -6,6 +6,10 @@ from __future__ import annotations
 from typing import Any, Mapping
 
 from receipt import Receipt
+from audio_output_receipts import (
+    AUDIO_OUTPUT_RECEIPT_EVENTS,
+    audio_output_receipt_from_envelope,
+)
 from ghost_can_receipts import (
     GHOST_CAN_OBSERVATION_EVENT,
     ghost_can_receipt_from_envelope,
@@ -55,6 +59,7 @@ RUNTIME_RECEIPT_EVENTS = (
     | EXECUTION_EVENTS
     | GHOST_OBSERVATION_EVENTS
     | DISTRIBUTED_WORK_RECEIPT_EVENTS
+    | AUDIO_OUTPUT_RECEIPT_EVENTS
     | CAPABILITY_EVENTS
     | RESOURCE_EVENTS
     | PRESENCE_EVENTS
@@ -81,6 +86,8 @@ def runtime_receipt_from_envelope(envelope: Mapping[str, Any]) -> Receipt:
         return ghost_can_receipt_from_envelope(envelope)
     if event_type in DISTRIBUTED_WORK_RECEIPT_EVENTS:
         return distributed_work_receipt_from_envelope(envelope)
+    if event_type in AUDIO_OUTPUT_RECEIPT_EVENTS:
+        return audio_output_receipt_from_envelope(envelope)
 
     source = _required_text(envelope, "source")
     subject_id = _required_text(envelope, "subject_id")
