@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "velvet-receipts"
-version = "1.0.2"
+version = "1.1.0"
 description = "Deterministic append-only receipt chains for the Velvet ecosystem"
 readme = "README.md"
 requires-python = ">=3.8"
@@ -16,6 +16,7 @@ py-modules = [
   "receipt",
   "receipt_logger",
   "runtime_receipts",
+  "audio_output_receipts",
   "ghost_can_receipts",
   "distributed_work_receipts",
   "memory_link",
