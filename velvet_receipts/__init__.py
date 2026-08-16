@@ -22,6 +22,13 @@ from distributed_work_receipts import (
     DistributedWorkReceiptError,
     distributed_work_receipt_from_envelope,
 )
+from learning_session_receipts import (
+    LEARNING_SESSION_EVENT_CONTRACT,
+    LEARNING_SESSION_RECEIPT_EVENTS,
+    LEARNING_SESSION_RECEIPT_SCHEMA,
+    LearningSessionReceiptError,
+    learning_session_receipt_from_envelope,
+)
 
 __all__ = [
     "GENESIS_HASH",
@@ -39,5 +46,10 @@ __all__ = [
     "DISTRIBUTED_WORK_RECEIPT_SCHEMA",
     "DistributedWorkReceiptError",
     "distributed_work_receipt_from_envelope",
+    "LEARNING_SESSION_EVENT_CONTRACT",
+    "LEARNING_SESSION_RECEIPT_EVENTS",
+    "LEARNING_SESSION_RECEIPT_SCHEMA",
+    "LearningSessionReceiptError",
+    "learning_session_receipt_from_envelope",
     "runtime_receipt_from_envelope",
 ]
