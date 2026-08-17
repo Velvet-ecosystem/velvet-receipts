@@ -18,6 +18,10 @@ from distributed_work_receipts import (
     DISTRIBUTED_WORK_RECEIPT_EVENTS,
     distributed_work_receipt_from_envelope,
 )
+from learning_session_receipts import (
+    LEARNING_SESSION_RECEIPT_EVENTS,
+    learning_session_receipt_from_envelope,
+)
 
 COURT_EVENTS = {
     "COURT_AUTHORIZED",
@@ -60,6 +64,7 @@ RUNTIME_RECEIPT_EVENTS = (
     | GHOST_OBSERVATION_EVENTS
     | DISTRIBUTED_WORK_RECEIPT_EVENTS
     | AUDIO_OUTPUT_RECEIPT_EVENTS
+    | LEARNING_SESSION_RECEIPT_EVENTS
     | CAPABILITY_EVENTS
     | RESOURCE_EVENTS
     | PRESENCE_EVENTS
@@ -88,6 +93,8 @@ def runtime_receipt_from_envelope(envelope: Mapping[str, Any]) -> Receipt:
         return distributed_work_receipt_from_envelope(envelope)
     if event_type in AUDIO_OUTPUT_RECEIPT_EVENTS:
         return audio_output_receipt_from_envelope(envelope)
+    if event_type in LEARNING_SESSION_RECEIPT_EVENTS:
+        return learning_session_receipt_from_envelope(envelope)
 
     source = _required_text(envelope, "source")
     subject_id = _required_text(envelope, "subject_id")
